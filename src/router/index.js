@@ -6,6 +6,7 @@ import Dashboard from '../page/Dashboard';
 import Menu from '../page/Menu';
 import Profile from '../page/Profile';
 import Splash from '../page/Splash';
+import Vanila from '../page/Vanila';
 const Tab = createBottomTabNavigator();
 
 const MainApp = () => {
@@ -15,7 +16,7 @@ const MainApp = () => {
         <Tab.Screen name="Dashboard" component={Dashboard} options={{headerShown: false}} />
         <Tab.Screen name="Menu" component={Menu} options={{headerShown: false}} />
         <Tab.Screen name="Profile" component={Profile} options={{headerShown: false}} />
-        {/* <Tab.Screen name="Menu" component={Menu} options={{headerShown: false}} /> */}
+        <Tab.Screen name="Vanila" component={Vanila} options={{headerShown: false}} />
     </Tab.Navigator>
   );
 };

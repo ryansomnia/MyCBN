@@ -7,9 +7,25 @@ import {
     Image,
   } from 'react-native';
   import { Profil } from '../assets';
-  
-  
+  // import axios from 'axios';
+  // const api = `http://8.215.37.21:5000`;
 export default class Dashboard extends Component {
+
+// constructor(props){
+//   super(props)
+//   this.state = {
+//     dataUser:[]
+//   }
+// }
+
+//   componentDidMount() {
+//     axios.get(api + `/cbn/v1/user/getuser`).then(result => {
+//         this.setState({ 
+//           dataUser : result.data
+//         });
+//         console.log(result);
+//       });
+//   }
     render() {
         return (
             <View style={style.container}>
@@ -40,7 +56,7 @@ export default class Dashboard extends Component {
                     snapToAlignment='center'>
             
                   <View style={style.event}>
-                      <View style={style.itemEvent}></View>
+                      {/* {this.state.data.map(data =><View style={style.itemEvent}>{data}</View>)} */}
                       <View style={style.itemEvent}></View>
                       <View style={style.itemEvent}></View>
                       <View style={style.itemEvent}></View>              
@@ -60,6 +76,12 @@ export default class Dashboard extends Component {
                       <View style={style.itemRenungan}></View>
                       <View style={style.itemRenungan}></View>              
                   </View>
+                  {/* <View style={style.event}>
+                    {this.state.dataUser.map(dataUser=>
+                    <Text>{dataUser.username}</Text>
+                    
+                    )}
+                    </View> */}
                 </ScrollView>
                 {/* <Text style={{}}>Lihat Semua</Text> */}
                 </ScrollView>
