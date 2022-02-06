@@ -7,25 +7,34 @@ import {
     Image,
   } from 'react-native';
   import { Profil } from '../assets';
-  // import axios from 'axios';
-  // const api = `http://8.215.37.21:5000`;
+  import axios from 'axios';
+  const api = `http://8.215.37.21:5001`
 export default class Dashboard extends Component {
 
-// constructor(props){
-//   super(props)
-//   this.state = {
-//     dataUser:[]
-//   }
-// }
+  
+constructor(props){
+  super(props)
+  this.state = {
+    dataArtikel:[],
+    dataRenungan:[]
+  }
+}
 
-//   componentDidMount() {
-//     axios.get(api + `/cbn/v1/user/getuser`).then(result => {
-//         this.setState({ 
-//           dataUser : result.data
-//         });
-//         console.log(result);
-//       });
-//   }
+componentDidMount() {
+  axios.get(api+"/cbn/v1/artikel/getDataArtikel")
+  .then(res => {
+    this.setState({
+      dataArtikel : res.data.data
+    })
+  })
+  axios.get(api+"/cbn/v1/artikel/getDataRenungan")
+  .then(res => {
+    this.setState({
+      dataRenungan : res.data.data
+    })
+  })
+}
+
     render() {
         return (
             <View style={style.container}>
@@ -56,25 +65,17 @@ export default class Dashboard extends Component {
                     snapToAlignment='center'>
             
                   <View style={style.event}>
-                      {/* {this.state.data.map(data =><View style={style.itemEvent}>{data}</View>)} */}
-                      <View style={style.itemEvent}>
+                    {this.state.dataArtikel.map(dataArtikel => 
+                      <View key={dataArtikel} style={style.itemEvent}>
+                        {/* <Image source={dataArtikel.image}/> */}
                       <View style={{backgroundColor:'#ffffff',width:250,height:50, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
-                          <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>Judul Artikel</Text>
-                          <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto', fontSize:12}}>06 Februari 2022</Text>
-                          </View>
-                      </View>
-                      <View style={style.itemEvent}>
-                      <View style={{backgroundColor:'#ffffff',width:250,height:50, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
-                          <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>Judul Artikel</Text>
-                          <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto', fontSize:12}}>06 Februari 2022</Text>
-                          </View>
-                      </View>
-                      <View style={style.itemEvent}>
-                      <View style={{backgroundColor:'#ffffff',width:250,height:50, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
-                          <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>Judul Artikel</Text>
-                          <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto', fontSize:12}}>06 Februari 2022</Text>
-                          </View>
-                      </View>    
+                        <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>{dataArtikel.judulArtikel}</Text>
+                        <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto', fontSize:12}}>{dataArtikel.waktuPembuatan}</Text>
+                        </View>
+                      </View> 
+                      )}
+                      
+
                   </View>
                 </ScrollView>
                 <Text style={style.headerContent}>RENUNGAN</Text>
@@ -86,33 +87,17 @@ export default class Dashboard extends Component {
                     snapToAlignment='center'>
             
                   <View style={style.event}>
-                      <View style={style.itemRenungan}>
+                  {this.state.dataRenungan.map(dataRenungan => 
+                      <View key={dataRenungan} style={style.itemRenungan}>
                       <View style={{backgroundColor:'#ffffff',width:250,height:40, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
-                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>Judul Artikel</Text>
-                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto', fontSize:12}}>06 Februari 2022</Text>
+                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>{dataRenungan.judulArtikel}</Text>
+                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto', fontSize:12}}>{dataRenungan.waktuPembuatan}</Text>
                           </View>
                       </View>
-                      <View style={style.itemRenungan}>
-                      <View style={{backgroundColor:'#ffffff',width:250,height:40, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
-                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>Judul Artikel</Text>
-                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto', fontSize:12}}>06 Februari 2022</Text>
-                          </View>
-                      </View> 
-                      <View style={style.itemRenungan}>
-                      <View style={{backgroundColor:'#ffffff',width:250,height:40, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
-                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>Judul Artikel</Text>
-                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto', fontSize:12}}>06 Februari 2022</Text>
-                          </View>
-                      </View>  
+                  )}
                   </View>
-                  {/* <View style={style.event}>
-                    {this.state.dataUser.map(dataUser=>
-                    <Text>{dataUser.username}</Text>
-                    
-                    )}
-                    </View> */}
+                
                 </ScrollView>
-                {/* <Text style={{}}>Lihat Semua</Text> */}
                 </ScrollView>
                
           </View>
@@ -193,6 +178,7 @@ const style = StyleSheet.create({
       marginVertical:5
     },
     itemRenungan:{
+      elevation:25,
       flexDirection:'column-reverse',
       backgroundColor:'#22577E',
       borderRadius:30,
