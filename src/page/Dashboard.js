@@ -39,8 +39,8 @@ export default class Dashboard extends Component {
                     <View style={style.notif}>
                     </View>
                 </View>
-                <View style={{backgroundColor: '#F6F2D4', marginBottom: 20}}>
-                  <View style={{width:342, backgroundColor:'#F6F2D4', marginHorizontal:35}}>
+                <View style={{marginBottom: 20}}>
+                  <View style={{width:342, marginHorizontal:35}}>
                       <Text style={{fontFamily:'Roboto',color : '#000000',fontSize : 30, fontWeight: '500',opacity:0.6, textAlign:'center',marginTop:27}}>Ayat Perenungan</Text>
                       <Text style={{color : '#000000',fontSize : 15, fontWeight: '400', textAlign:'center',opacity:0.6, marginTop:29}}>Dan sebagian jatuh di tanah yang baik lalu berbuah: ada yang seratus kali lipat, ada yang enam puluh kali lipat, ada yang tiga puluh kali lipat.</Text>
                       <Text style={{color : '#000000',fontSize : 15, fontWeight: '400', textAlign:'center',opacity:0.6, marginTop:10,left:100}}>Matius 13:8</Text>
@@ -57,9 +57,24 @@ export default class Dashboard extends Component {
             
                   <View style={style.event}>
                       {/* {this.state.data.map(data =><View style={style.itemEvent}>{data}</View>)} */}
-                      <View style={style.itemEvent}></View>
-                      <View style={style.itemEvent}></View>
-                      <View style={style.itemEvent}></View>              
+                      <View style={style.itemEvent}>
+                      <View style={{backgroundColor:'#ffffff',width:250,height:50, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
+                          <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>Judul Artikel</Text>
+                          <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto', fontSize:12}}>06 Februari 2022</Text>
+                          </View>
+                      </View>
+                      <View style={style.itemEvent}>
+                      <View style={{backgroundColor:'#ffffff',width:250,height:50, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
+                          <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>Judul Artikel</Text>
+                          <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto', fontSize:12}}>06 Februari 2022</Text>
+                          </View>
+                      </View>
+                      <View style={style.itemEvent}>
+                      <View style={{backgroundColor:'#ffffff',width:250,height:50, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
+                          <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>Judul Artikel</Text>
+                          <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto', fontSize:12}}>06 Februari 2022</Text>
+                          </View>
+                      </View>    
                   </View>
                 </ScrollView>
                 <Text style={style.headerContent}>RENUNGAN</Text>
@@ -71,10 +86,24 @@ export default class Dashboard extends Component {
                     snapToAlignment='center'>
             
                   <View style={style.event}>
-                      <View style={style.itemRenungan}></View>
-                      <View style={style.itemRenungan}></View>
-                      <View style={style.itemRenungan}></View>
-                      <View style={style.itemRenungan}></View>              
+                      <View style={style.itemRenungan}>
+                      <View style={{backgroundColor:'#ffffff',width:250,height:40, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
+                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>Judul Artikel</Text>
+                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto', fontSize:12}}>06 Februari 2022</Text>
+                          </View>
+                      </View>
+                      <View style={style.itemRenungan}>
+                      <View style={{backgroundColor:'#ffffff',width:250,height:40, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
+                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>Judul Artikel</Text>
+                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto', fontSize:12}}>06 Februari 2022</Text>
+                          </View>
+                      </View> 
+                      <View style={style.itemRenungan}>
+                      <View style={{backgroundColor:'#ffffff',width:250,height:40, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
+                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>Judul Artikel</Text>
+                          <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto', fontSize:12}}>06 Februari 2022</Text>
+                          </View>
+                      </View>  
                   </View>
                   {/* <View style={style.event}>
                     {this.state.dataUser.map(dataUser=>
@@ -91,8 +120,9 @@ export default class Dashboard extends Component {
     }
 }
 const style = StyleSheet.create({
+  
     container: {
-      backgroundColor: '#F6F2D4',
+      backgroundColor: '#fffff',
       flex :1,
       flexDirection : 'column',
     },
@@ -149,23 +179,25 @@ const style = StyleSheet.create({
         opacity: 0.7
       },
       event:{
-        backgroundColor: '#F6F2D4',
         flexDirection:'row',
         marginBottom:40
       },
       itemEvent:{
+      elevation:25,
+      flexDirection:'column-reverse',
       backgroundColor:'#22577E',
       borderRadius:30,
-      width:350,
+      width:250,
       height:200,
       marginHorizontal:10,
       marginVertical:5
     },
     itemRenungan:{
+      flexDirection:'column-reverse',
       backgroundColor:'#22577E',
       borderRadius:30,
-      width:200,
-      height:150,
+      width:250,
+      height:200,
       marginHorizontal:10,
       marginVertical:5
     },
