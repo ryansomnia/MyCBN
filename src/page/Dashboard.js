@@ -16,7 +16,8 @@ constructor(props){
   super(props)
   this.state = {
     dataArtikel:[],
-    dataRenungan:[]
+    dataRenungan:[],
+    dataAyat:[]
   }
 }
 
@@ -31,6 +32,12 @@ componentDidMount() {
   .then(res => {
     this.setState({
       dataRenungan : res.data.data
+    })
+  })
+  axios.get(api+"/cbn/v1/verse/getVerse")
+  .then(res => {
+    this.setState({
+      dataAyat : res.data.data
     })
   })
 }
@@ -49,11 +56,13 @@ componentDidMount() {
                     </View>
                 </View>
                 <View style={{marginBottom: 20}}>
-                  <View style={{width:342, marginHorizontal:35}}>
+                {this.state.dataAyat.map(dataAyat => 
+                  <View key={dataAyat} style={{width:342, marginHorizontal:35}}>
                       <Text style={{fontFamily:'Roboto',color : '#000000',fontSize : 30, fontWeight: '500',opacity:0.6, textAlign:'center',marginTop:27}}>Ayat Perenungan</Text>
-                      <Text style={{color : '#000000',fontSize : 15, fontWeight: '400', textAlign:'center',opacity:0.6, marginTop:29}}>Dan sebagian jatuh di tanah yang baik lalu berbuah: ada yang seratus kali lipat, ada yang enam puluh kali lipat, ada yang tiga puluh kali lipat.</Text>
-                      <Text style={{color : '#000000',fontSize : 15, fontWeight: '400', textAlign:'center',opacity:0.6, marginTop:10,left:100}}>Matius 13:8</Text>
+                      <Text style={{color : '#000000',fontSize : 15, fontWeight: '400', textAlign:'center',opacity:0.6, marginTop:29}}>{dataAyat.isiAyat}</Text>
+                      <Text style={{color : '#000000',fontSize : 15, fontWeight: '400', textAlign:'center',opacity:0.6, marginTop:10,left:100}}>{dataAyat.Kitab} {dataAyat.pasalAyat}</Text>
                   </View>
+                )}
                 </View>
                 
                 <Text style={style.headerContent}>WARTA JEMAAT</Text>    
