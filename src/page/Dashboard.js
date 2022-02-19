@@ -75,8 +75,8 @@ componentDidMount() {
             
                   <View style={style.event}>
                     {this.state.dataArtikel.map(dataArtikel => 
-                      <View key={dataArtikel} style={style.itemEvent}>
-                        {/* <Image source={dataArtikel.image}/> */}
+                      <View key={dataArtikel.idArtikel} style={style.itemEvent}>
+                        <Image source={dataArtikel.image}/>
                       <View style={{backgroundColor:'#ffffff',width:250,height:50, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
                         <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>{dataArtikel.judulArtikel}</Text>
                         <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto', fontSize:12}}>{dataArtikel.waktuPembuatan}</Text>
@@ -97,7 +97,8 @@ componentDidMount() {
             
                   <View style={style.event}>
                   {this.state.dataRenungan.map(dataRenungan => 
-                      <View key={dataRenungan} style={style.itemRenungan}>
+                      <View key={dataRenungan.idArtikel} style={style.itemRenungan}>
+                      <Image source={dataRenungan.image}/>
                       <View style={{backgroundColor:'#ffffff',width:250,height:40, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
                           <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>{dataRenungan.judulArtikel}</Text>
                           <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto', fontSize:12}}>{dataRenungan.waktuPembuatan}</Text>

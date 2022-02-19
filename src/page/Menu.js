@@ -1,8 +1,18 @@
-import { Text, StyleSheet, View, ScrollView,Image } from 'react-native';
+import { Text, StyleSheet, View, ScrollView,Image, Button } from 'react-native';
 import React, { Component } from 'react';
-import { Profil } from '../assets';
-
+import { AbsenKKA, daftarKKA } from '../assets';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 export default class Menu extends Component {
+  constructor(props) {
+    super(props);
+    this.buttonFormDaftarKKA = this.buttonFormDaftarKKA.bind(this);
+  }
+
+
+
+  buttonFormDaftarKKA() {
+        this.props.navigation.navigate('FormKKA')
+  }
   render() {
     return (
       <View style={style.container}>
@@ -45,9 +55,13 @@ export default class Menu extends Component {
             snapToInterval={350+10}
             snapToAlignment='center'> */}
     
-          <View style={style.pastoralCare}>
-              <View style={style.itemPastoral}></View>
-              <View style={style.itemPastoral}></View>             
+          <View style={style.kka}>
+
+          <Image  source={AbsenKKA} style={style.itemKKA}/>
+         <TouchableOpacity onPress={()=>{alert("you clicked me")}}>
+         <Image source={daftarKKA} style={style.itemKKA}/>           
+         </TouchableOpacity>
+        
           </View>
         {/* </ScrollView> */}
         </ScrollView>
@@ -60,7 +74,7 @@ export default class Menu extends Component {
 const style = StyleSheet.create({
 
   container: {
-    backgroundColor: '#F6F2D4',
+    backgroundColor: '#fffff',
     flex :1,
     flexDirection : 'column',
   },
@@ -98,7 +112,7 @@ const style = StyleSheet.create({
     borderRadius: 50
   },
   texthi: {
-    color:'#F6F2D4',
+    backgroundColor: '#fffff',
     fontWeight: 'bold',
     fontSize: 50,
     textAlign: 'center',
@@ -118,12 +132,12 @@ const style = StyleSheet.create({
       opacity: 0.7
     },
     event:{
-      backgroundColor: '#F6F2D4',
+     backgroundColor: '#fffff',
       flexDirection:'row',
       marginBottom:40
     },
     pastoralCare:{
-      backgroundColor: '#F6F2D4',
+     backgroundColor: '#fffff',
       flexDirection:'row',
       marginBottom:30,
       justifyContent:'center'
@@ -137,6 +151,20 @@ const style = StyleSheet.create({
     marginVertical:5
   },
   itemPastoral:{
+    backgroundColor:'#22577E',
+    borderRadius:30,
+    width:167,
+    height:141,
+    marginHorizontal:10,
+    marginVertical:5
+  },
+  kka:{
+    backgroundColor: '#red',
+     flexDirection:'row',
+     marginBottom:30,
+     justifyContent:'center'
+   },
+  itemKKA:{
     backgroundColor:'#22577E',
     borderRadius:30,
     width:167,
