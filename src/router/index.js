@@ -7,7 +7,10 @@ import Menu from '../page/Menu';
 import Profile from '../page/Profile';
 import Splash from '../page/Splash';
 import Login from '../page/Login';
+import RegisPage from '../page/RegisPage'
 import FormKKA from '../component/FormKKA';
+import RegistProfile from '../page/RegistProfile';
+
 const Tab = createBottomTabNavigator();
 
 const MainApp = () => {
@@ -27,11 +30,13 @@ const Stack = createNativeStackNavigator();
 const Router = () => {
   return (
     
-    <Stack.Navigator initialRouteName="Login">
+    <Stack.Navigator initialRouteName="MainApp">
       <Stack.Screen name="FormKKA" component={FormKKA} options={{headerShown: false}}/>
       <Stack.Screen name="MainApp" component={MainApp} options={{headerShown: false}}/>
       <Stack.Screen name="Splash" component={Splash} options={{headerShown: false}}/> 
       <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/> 
+      <Stack.Screen name="RegisPage" component={RegisPage} options={{headerShown: false}}/> 
+      <Stack.Screen name="RegistProfile" component={RegistProfile} options={{headerShown: false}}/> 
       <Stack.Screen name="Dashboard" component={Dashboard} options={{headerShown: false}}/> 
     </Stack.Navigator>
   

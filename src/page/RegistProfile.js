@@ -1,22 +1,24 @@
-import {Button, StyleSheet, Text, TextInput, View, Alert, Image} from 'react-native';
+import {Button, StyleSheet, Text, TextInput, View, Alert, Image, ScrollView} from 'react-native';
 import React, {Component, useEffect} from 'react';
 import { LoginImg } from '../assets';
 import axios from 'axios';
   const api = `http://8.215.37.21:5001`
 
-export default class Login extends Component {
+export default class RegisPage extends Component {
 
-  constructor(props) {
-    super(props);
-    this.buttonPress = this.buttonPress.bind(this);
-    this.registPress = this.registPress.bind(this);
-    this.state = {
-      username:'',
-      password:'',
-      data:[]
-    }
-  }
-
+  
+    constructor(props) {
+        super(props);
+        this.LoginPress = this.LoginPress.bind(this);
+        // this.buttonPress = this.buttonPress.bind(this);
+        this.state = {
+          username:'',
+          password:'',
+          data:[]
+        }
+      }
+    
+    
   handleChangeUsername(textUsername){
     this.setState({
       username : textUsername
@@ -27,48 +29,40 @@ export default class Login extends Component {
       password : textPassword
     })
   }
+  handleChangePassword(textPassword){
+    this.setState({
+      password : textPassword
+    })
+  }
 
  
-  async buttonPress() {
-    try{
-    let response =  await axios.post(api + '/cbn/v1/user/login', {
-      username: this.state.username,
-      password: this.state.password
-    })
-      console.log(response.status);
-      if (response.status == 200) {
-        console.log(response.data);
-        this.props.navigation.navigate('MainApp');
-      } else if(response.status == 401){
-        console.log(response.data);
-        Alert.alert(`${response.data.message}, ${response.data.error}`)
-      }
-    }catch(e){
-      console.log(e);
-      Alert.alert('Password atau Username salah')
-    }
-  }
-  async registPress() {
+  async LoginPress() {
   
-        this.props.navigation.navigate('RegisPage');
+        this.props.navigation.navigate('Login');
   }
+  async NextStep() {
+  
+    this.props.navigation.navigate('RegistProfile');
+}
+  NextStep
 
   render() {
     
     return (
       <View style={styles.container}>
-        {/* <View style={styles.imageSection}>  */}
+          <ScrollView>
+        <View style={styles.imageSection}> 
         <Image source={LoginImg}style={styles.imageLogo}/>
-        {/* </View> */}
+        </View>
        
         
       <View style={styles.Header}>
         
     
-        <Text style={styles.title}>Login</Text>
-        {/* <Text style={styles.subTitle}>
-          Selamat datang di My CBN silahkan login terlebih dahulu
-        </Text> */}
+        <Text style={styles.title}>Daftar Akun</Text>
+        <Text style={styles.subTitle}>
+          Selamat datang di My CBN silahkan Daftar terlebih dahulu
+        </Text>
       </View>
       <View style={styles.LoginSection}>
       <TextInput
@@ -77,25 +71,37 @@ export default class Login extends Component {
         placeholderTextColor="#000000"
         onChangeText={text => this.handleChangeUsername(text)}
       />
+  
        <TextInput
         style={styles.inputLogin}
-        placeholder="Password"
+        placeholder="Email"
         secureTextEntry
         placeholderTextColor="#000000"
-        onChangeText={text => this.handleChangePassword(text)}
+        onChangeText={text => this.handleChangeEmail(text)}
       />
+       <TextInput
+        style={styles.inputLogin}
+        type='number'
+        placeholder="No Handphone"
+        secureTextEntry
+        placeholderTextColor="#000000"
+        onChangeText={text => this.handleChangeNoHandphone(text)}
+      />
+      
       <View style={styles.buttonLogin}>
       <Button
-  title="Login"
+  title="Lanjutkan >>"
   color="#F6BA3A"
   style={styles.buttonLogin}
-  onPress={this.buttonPress}
+  onPress={this.NextStep}
   
 />
 </View >
-      <Text>Anda belum terdaftar? <Text style={styles.textRegister} onPress={this.registPress}>Daftar akun disini</Text></Text>
+<Text>Kamu sudah punya akun? <Text style={styles.textRegister} onPress={this.LoginPress}>Login disini</Text></Text>
       </View>
+      </ScrollView>
     </View>
+    
     );
   }
 }
@@ -116,23 +122,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
      marginBottom:20
   },
-  // imageSection: {
-  //   // flexDirection: 'column',
-  //   backgroundColor: 'red',
-  // },
+
   imageLogo : {
     alignSelf:'center',
-    height:135,
-    width:135,
+    height:80,
+    width:80,
     marginRight:5,
     marginLeft :20,
-    marginTop:120,
+    marginTop:10,
  
   
   },
   title: {
-    // backgroundColor:'red',
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: '600',
     textAlign: 'center',
     color: 'black',
@@ -151,7 +153,6 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   LoginSection:{
-      height:250,
       backgroundColor:'#FFFFFF',
       alignItems:'center'
   },
@@ -170,7 +171,6 @@ const styles = StyleSheet.create({
     width: 300,
     margin: 7,
     borderRadius:0
-    // backgroundColor: '#FFFFFF'
     
   },
   textRegister:{

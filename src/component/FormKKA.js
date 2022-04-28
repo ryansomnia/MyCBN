@@ -1,11 +1,14 @@
-import { Text, View } from 'react-native'
+import { Image, Text, View } from 'react-native'
 import React, { Component } from 'react'
 
 export default class FormKKA extends Component {
   render() {
     return (
       <View>
-        <Text>FormKKA</Text>
+        <Text>Form KKA</Text>
+      <View>
+        <Image />
+      </View>
       </View>
     )
   }
