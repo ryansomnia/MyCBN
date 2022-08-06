@@ -93,7 +93,7 @@ export default class Login extends Component {
   
 />
 </View >
-      <Text>Anda belum terdaftar? <Text style={styles.textRegister} onPress={this.registPress}>Daftar akun disini</Text></Text>
+      <Text style={styles.textRegister}>Anda belum terdaftar? <Text style={styles.textRegisterLink} onPress={this.registPress}>Daftar akun disini</Text></Text>
       </View>
     </View>
     );
@@ -109,17 +109,11 @@ const styles = StyleSheet.create({
 
   },
   Header:{
-    // backgroundColor:'red',
     flexDirection: 'column',
-    // height:100,
-    // paddingTop: 50,
     paddingHorizontal: 40,
      marginBottom:20
   },
-  // imageSection: {
-  //   // flexDirection: 'column',
-  //   backgroundColor: 'red',
-  // },
+
   imageLogo : {
     alignSelf:'center',
     height:135,
@@ -131,7 +125,6 @@ const styles = StyleSheet.create({
   
   },
   title: {
-    // backgroundColor:'red',
     fontSize: 40,
     fontWeight: '600',
     textAlign: 'center',
@@ -170,11 +163,16 @@ const styles = StyleSheet.create({
     width: 300,
     margin: 7,
     borderRadius:0
-    // backgroundColor: '#FFFFFF'
     
   },
   textRegister:{
-    fontWeight:'bold'
+    fontSize:15,
+    color:'#000000'
+  },
+  textRegisterLink:{
+    fontSize:17,
+    fontWeight:'bold',
+    color:'#000000'
   }
 });
   // 22577E

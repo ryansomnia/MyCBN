@@ -5,15 +5,20 @@ import {
     View,
     ScrollView,
     Image,
+    TouchableOpacity
   } from 'react-native';
   import { Profil } from '../assets';
   import axios from 'axios';
   const api = `http://8.215.37.21:5001`
+  TouchableOpacity.defaultProps = { 
+    activeOpacity: 0.7
+  };
 export default class Dashboard extends Component {
 
   
 constructor(props){
   super(props)
+  this.SeeArticle = this.SeeArticle.bind(this);
   this.state = {
     dataArtikel:[],
     dataRenungan:[],
@@ -22,11 +27,12 @@ constructor(props){
 }
 
 componentDidMount() {
-  axios.get(api+"/cbn/v1/artikel/getDataArtikel")
+  axios.get(api+"/cbn/v1/artikel/getAllArticle")
   .then(res => {
     this.setState({
       dataArtikel : res.data.data
     })
+    console.log(this.state.dataArtikel);
   })
   axios.get(api+"/cbn/v1/artikel/getDataRenungan")
   .then(res => {
@@ -42,11 +48,18 @@ componentDidMount() {
   })
 }
 
+async SeeArticle() {
+  
+  this.props.navigation.navigate('Article');
+}
+
+
     render() {
         return (
+          
             <View style={style.container}>
               <ScrollView>
-                <View style={{flex:1, height:100, flexDirection:'row'}}>
+                <View style={{flex:1, flexDirection:'row'}}>
                 <Image source={Profil}style={style.imageProfile}/>
                     <View style={style.wellcome}>
                       <Text style={{color : '#5584AC',fontSize : 15, fontWeight: '900'}}>Selamat Datang</Text>
@@ -57,7 +70,7 @@ componentDidMount() {
                 </View>
                 <View style={{marginBottom: 20}}>
                 {this.state.dataAyat.map(dataAyat => 
-                  <View key={dataAyat} style={{width:342, marginHorizontal:35}}>
+                  <View key={dataAyat} style={{flex:1, marginHorizontal:35}}>
                       <Text style={{fontFamily:'Roboto',color : '#000000',fontSize : 30, fontWeight: '500',opacity:0.6, textAlign:'center',marginTop:27}}>Ayat Perenungan</Text>
                       <Text style={{color : '#000000',fontSize : 15, fontWeight: '400', textAlign:'center',opacity:0.6, marginTop:29}}>{dataAyat.isiAyat}</Text>
                       <Text style={{color : '#000000',fontSize : 15, fontWeight: '400', textAlign:'center',opacity:0.6, marginTop:10,left:100}}>{dataAyat.Kitab} {dataAyat.pasalAyat}</Text>
@@ -75,15 +88,19 @@ componentDidMount() {
             
                   <View style={style.event}>
                     {this.state.dataArtikel.map(dataArtikel => 
-                      <View key={dataArtikel.idArtikel} style={style.itemEvent}>
-                        <Image source={dataArtikel.image}/>
-                      <View style={{backgroundColor:'#ffffff',width:250,height:50, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
+                      <TouchableOpacity key={dataArtikel._id} style={style.itemEvent} onPress={this.SeeArticle}>
+                             <Image 
+                         style={{width: '100%', height: '100%', borderTopLeftRadius:30, borderTopRightRadius:30}}
+                        source={{uri:dataArtikel.url}}/>
+                          <View style={{backgroundColor:'#ffffff',width:250,height:50, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
                         <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>{dataArtikel.judulArtikel}</Text>
                         <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto', fontSize:12}}>{dataArtikel.waktuPembuatan}</Text>
                         </View>
-                      </View> 
+                   
+                       
+                      </TouchableOpacity> 
                       )}
-                      
+
 
                   </View>
                 </ScrollView>
@@ -97,13 +114,13 @@ componentDidMount() {
             
                   <View style={style.event}>
                   {this.state.dataRenungan.map(dataRenungan => 
-                      <View key={dataRenungan.idArtikel} style={style.itemRenungan}>
-                      <Image source={dataRenungan.image}/>
+                      <TouchableOpacity key={dataRenungan._id} style={style.itemRenungan} onPress={this.SeeArticle}>
+                      <Image source={{ uri: dataRenungan.url }}/>
                       <View style={{backgroundColor:'#ffffff',width:250,height:40, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
                           <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>{dataRenungan.judulArtikel}</Text>
                           <Text style={{marginLeft:20,color:'black', fontFamily: 'Roboto', fontSize:12}}>{dataRenungan.waktuPembuatan}</Text>
                           </View>
-                      </View>
+                      </TouchableOpacity>
                   )}
                   </View>
                 
@@ -141,7 +158,7 @@ const style = StyleSheet.create({
       width:40,
       backgroundColor: '#D9534F',
       marginVertical:20,
-      marginLeft: 50,
+      marginHorizontal: '10%',
       borderRadius: 50
     },
     texthi: {
@@ -149,22 +166,13 @@ const style = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 50,
       textAlign: 'center',
-      // textDecorationStyle: 'solid'
-      // textDecorationLine:'none'
-      // letterSpacing:5
-      },
-      // textinput:{
-      //   backgroundColor: '#95D1CC',
-      //   borderRadius:15,
-      //   marginBottom:15,
-      //   marginHorizontal:20
-      // },
+    },
       dailyVerse: {
         backgroundColor: 'red',
-        width:10,
-        height:10
+       flex:1
       },
       headerContent :{
+        marginTop:25,
         marginLeft:21,
         fontStyle:'normal',
         fontSize: 20,
@@ -175,11 +183,12 @@ const style = StyleSheet.create({
       },
       event:{
         flexDirection:'row',
-        marginBottom:40
+        marginBottom:40  
+            
       },
       itemEvent:{
       elevation:25,
-      flexDirection:'column-reverse',
+      flexDirection:'column',
       backgroundColor:'#22577E',
       borderRadius:30,
       width:250,

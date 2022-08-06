@@ -43,8 +43,12 @@ export default class Menu extends Component {
             snapToAlignment='center'> */}
     
           <View style={style.pastoralCare}>
-              <View style={style.itemPastoral}></View>
-              <View style={style.itemPastoral}></View>             
+              <View style={style.itemPastoral}>
+                <Text>Request Doa</Text>
+              </View>
+              <View style={style.itemPastoral}>
+              <Text>Konseling</Text>
+              </View>             
           </View>
         {/* </ScrollView> */}
         <Text style={style.headerContent}>KKA</Text>
@@ -57,10 +61,17 @@ export default class Menu extends Component {
     
           <View style={style.kka}>
 
-          <Image  source={AbsenKKA} style={style.itemKKA}/>
+          {/* <Image  source={AbsenKKA} style={style.itemKKA}/> */}
          <TouchableOpacity onPress={()=>{alert("you clicked me")}}>
          <Image source={daftarKKA} style={style.itemKKA}/>           
          </TouchableOpacity>
+         <TouchableOpacity key={dataArtikel.idArtikel} style={style.itemEvent} onPress={this.SeeArticle}>
+                       
+                      <View style={{backgroundColor:'#ffffff',width:250,height:50, borderBottomStartRadius:30, borderBottomEndRadius:30}}>
+                        <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto',fontWeight:'bold', fontSize:14}}>{dataArtikel.judulArtikel}</Text>
+                        <Text style={{marginLeft:10,color:'black', fontFamily: 'Roboto', fontSize:12}}>{dataArtikel.waktuPembuatan}</Text>
+                        </View>
+                      </TouchableOpacity> 
         
           </View>
         {/* </ScrollView> */}

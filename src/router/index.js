@@ -9,7 +9,7 @@ import Splash from '../page/Splash';
 import Login from '../page/Login';
 import RegisPage from '../page/RegisPage'
 import FormKKA from '../component/FormKKA';
-import RegistProfile from '../page/RegistProfile';
+import Article from '../component/Article';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +18,7 @@ const MainApp = () => {
     <Tab.Navigator>
         <Tab.Screen name="Dashboard" component={Dashboard} options={{headerShown: false}} />
         <Tab.Screen name="Menu" component={Menu} options={{headerShown: false}} />
-        <Tab.Screen name="Profile" component={Profile} options={{headerShown: false}} />
+        {/* <Tab.Screen name="Profile" component={Profile} options={{headerShown: false}} /> */}
     </Tab.Navigator>
   );
 };
@@ -31,12 +31,12 @@ const Router = () => {
   return (
     
     <Stack.Navigator initialRouteName="MainApp">
+      <Stack.Screen name="Article" component={Article} options={{headerShown: false}}/>
       <Stack.Screen name="FormKKA" component={FormKKA} options={{headerShown: false}}/>
       <Stack.Screen name="MainApp" component={MainApp} options={{headerShown: false}}/>
       <Stack.Screen name="Splash" component={Splash} options={{headerShown: false}}/> 
       <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/> 
       <Stack.Screen name="RegisPage" component={RegisPage} options={{headerShown: false}}/> 
-      <Stack.Screen name="RegistProfile" component={RegistProfile} options={{headerShown: false}}/> 
       <Stack.Screen name="Dashboard" component={Dashboard} options={{headerShown: false}}/> 
     </Stack.Navigator>
   
