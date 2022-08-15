@@ -3,7 +3,7 @@ import React, {Component, useEffect} from 'react';
 import { LoginImg } from '../assets';
 import axios from 'axios';
   const api = `http://8.215.37.21:5001`
-
+import syncStorage from 'sync-storage';
 export default class Login extends Component {
 
   constructor(props) {
@@ -38,6 +38,7 @@ export default class Login extends Component {
       console.log(response.status);
       if (response.status == 200) {
         console.log(response.data);
+        syncStorage.set("user",response.data)
         this.props.navigation.navigate('MainApp');
       } else if(response.status == 401){
         console.log(response.data);

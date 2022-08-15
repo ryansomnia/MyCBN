@@ -7,6 +7,7 @@ import {
     Image,
     TouchableOpacity
   } from 'react-native';
+  import syncStorage from 'sync-storage';
   import { Profil } from '../assets';
   import axios from 'axios';
   const api = `http://8.215.37.21:5001`
@@ -15,7 +16,7 @@ import {
   };
 export default class Dashboard extends Component {
 
-  
+
 constructor(props){
   super(props)
   this.SeeArticle = this.SeeArticle.bind(this);
@@ -26,8 +27,16 @@ constructor(props){
   }
 }
 
+
 componentDidMount() {
-  axios.get(api+"/cbn/v1/artikel/getAllArticle")
+  let user = syncStorage.get("user")
+  let config = {
+    headers : {
+      Authorization : `Bearer ${user.accessToken}`
+    }
+  }
+
+  axios.get(api+"/cbn/v1/artikel/getAllArticle", config)
   .then(res => {
     this.setState({
       dataArtikel : res.data.data
