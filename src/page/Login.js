@@ -2,7 +2,7 @@ import {Button, StyleSheet, Text, TextInput, View, Alert, Image} from 'react-nat
 import React, {Component, useEffect} from 'react';
 import { LoginImg } from '../assets';
 import axios from 'axios';
-  const api = `http://8.215.37.21:5001`
+  const api = `http://89.116.228.164:5001`
 import syncStorage from 'sync-storage';
 export default class Login extends Component {
 
